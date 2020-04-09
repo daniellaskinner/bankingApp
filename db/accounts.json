@@ -1,0 +1,5 @@
+{"_id":{"$oid":"5e8eed83270adc042416361b"},"firstName":"Joe","surName":"Jones","accountNumber":"24750947","accountBalance":{"$numberInt":"13000"}}
+{"_id":{"$oid":"5e8eedca270adc042416361c"},"firstName":"Mario","surName":"Kart","accountNumber":"75920486","accountBalance":{"$numberInt":"2800"}}
+{"_id":{"$oid":"5e8eedf1270adc042416361d"},"firstName":"Easter","surName":"Bunny","accountNumber":"84026577","accountBalance":{"$numberInt":"10000000"}}
+{"_id":{"$oid":"5e8eee0f270adc042416361e"},"firstName":"Nelly","surName":"Skinner","accountNumber":"02840292","accountBalance":{"$numberInt":"0"}}
+{"_id":{"$oid":"5e8eee35270adc042416361f"},"firstName":"Cuthbert","surName":"Cuthberty","accountNumber":"24371501","accountBalance":{"$numberInt":"15000"}}
