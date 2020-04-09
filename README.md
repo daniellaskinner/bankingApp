@@ -28,6 +28,7 @@ URL: /accounts
 
 Method: POST
 
+API returns:
 Success message: 'Successfully added new account for: (client Name)'
 
 Error message: 'Unable to add new account for this client.'
