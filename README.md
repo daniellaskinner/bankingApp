@@ -6,10 +6,15 @@ In browser: http://localhost:1000/
 Followed by route
 
 # API Routes:
-See all accounts (grabs all active user accounts where deleted property= false):
+
+# See all accounts (grabs all active user accounts where deleted property= false):
+
 URL: /accounts
+
 Method: GET
+
 API returns all accounts as JSON as an array of objects:
+
 ```
 {"accounts":
 [
@@ -18,9 +23,16 @@ API returns all accounts as JSON as an array of objects:
   {key:value}
 ]}
 ```
-Add new account:
+
+
+# Add new account:
+
 URL: /accounts
+
 Method: POST
+
 API returns:
+
 Success message: 'Successfully added new account for: (client Name)'
+
 Error message: 'Unable to add new account for this client.'
