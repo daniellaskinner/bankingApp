@@ -14,7 +14,7 @@ API returns all accounts as JSON as an array of objects:
 ]}
 
 API Routes:
-1. See all accounts
+1. See all accounts (grabs all active user accounts where deleted property= false)
 
 URL: /accounts
 
