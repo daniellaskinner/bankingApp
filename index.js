@@ -19,20 +19,63 @@ app.get('/accounts', (req, res) => {
             res.json(documentsReturned);
         });
     });
-    });
+});
 
-//function get get all accounts
+//function get all accounts
 var displayAllAccounts = (db, callback) => {
-    var collection = db.collection('accounts');
-    collection.find({}).toArray((err, documents) => {
+    let collection = db.collection('accounts');
+    collection.find({deleted:false}).toArray((err, documents) => {
         console.log('found the following accounts');
         callback(documents);
     })
 };
 
+//add account route
+app.post('/accounts', jsonParser, (req, res) => {
+    //new object to go into db this will be via frontend later on
+    const newAccount = {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        accountNumber: req.body.accountNumber,
+        accountBalance: req.body.accountBalance,
+    };
+
+    MongoClient.connect(url, {useNewUrlParser: true, useUnifiedTopology: true}, (err, client) => {
+        console.log('Connected correctly to MongoDb');
+        let bankDb = client.db('bankingApp');
+        addNewAccount(bankDb, newAccount, (documents) => {
+            if(documents.insertedCount === 1){
+                res.send('Successfully added new account for: ' + newAccount.firstName + " " + newAccount.lastName);
+            } else {
+                res.send('Unable to add new account for this client.');
+            }
+            client.close();
+        });
+    });
+});
+
+//function add account
+var addNewAccount = (db, newAccountToSend, callback) => {
+    let collection = db.collection('accounts');
+    //insert json object into the collection
+    collection.insertOne(newAccountToSend, (err, documents) => {
+        callback(documents);
+    });
+};
+
+//edit account route (for updating balance/adding funds)
+app.put('/accounts', jsonParser, (req, res) => {
+
+});
+
+//function update account balance
+var updateAccountBalance = (db, deposit, callback) => {
+
+};
 
 
+//function exports for testing
+module.exports = displayAllAccounts;
 
-
-
+//listener
 app.listen(port, () => {console.log(`Banking app listening at http://localhost:${port}`)});
