@@ -1,8 +1,7 @@
 # bankingApp
 A banking app made with node.js express and mongoDB.
 
-#To use the API:
-
+# To use the API:
 In browser: http://localhost:1000/
 Followed by route
 
@@ -13,7 +12,7 @@ API returns all accounts as JSON as an array of objects:
   {key:value}
 ]}
 
-#API Routes:
+# API Routes:
 1. See all accounts (grabs all active user accounts where deleted property= false)
 
 URL: /accounts
