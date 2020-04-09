@@ -1,8 +1,10 @@
 # bankingApp
 A banking app made with node.js express and mongoDB.
 
-# To use the API:
-In browser: http://localhost:1000/
+To use the API:
+
+In browser: http://localhost:1000
+
 Followed by route
 
 # API Routes:
