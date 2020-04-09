@@ -19,12 +19,12 @@ app.get('/accounts', (req, res) => {
             res.json(documentsReturned);
         });
     });
-    });
+});
 
 //function get all accounts
 var displayAllAccounts = (db, callback) => {
     let collection = db.collection('accounts');
-    collection.find({}).toArray((err, documents) => {
+    collection.find({deleted:false}).toArray((err, documents) => {
         console.log('found the following accounts');
         callback(documents);
     })
@@ -62,6 +62,20 @@ var addNewAccount = (db, newAccountToSend, callback) => {
         callback(documents);
     });
 };
+
+//edit account route (for updating balance/adding funds)
+app.put('/accounts', jsonParser, (req, res) => {
+
+});
+
+//function update account balance
+var updateAccountBalance = (db, deposit, callback) => {
+
+};
+
+
+//function exports for testing
+module.exports = displayAllAccounts;
 
 //listener
 app.listen(port, () => {console.log(`Banking app listening at http://localhost:${port}`)});
