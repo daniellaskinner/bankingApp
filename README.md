@@ -6,20 +6,23 @@ In browser: http://localhost:1000/
 Followed by route
 
 API returns all accounts as JSON as an array of objects:
-{"accounts":[
+```
+{"accounts":
+[
   {key:value},
   {key:value},
   {key:value}
 ]}
+```
 
 # API Routes:
-1. See all accounts (grabs all active user accounts where deleted property= false)
+See all accounts (grabs all active user accounts where deleted property= false):
 
 URL: /accounts
 
 Method: GET
 
-2. Add new account
+Add new account:
 
 URL: /accounts
 
