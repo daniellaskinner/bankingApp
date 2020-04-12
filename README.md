@@ -1,5 +1,6 @@
 # bankingApp
 A banking app made with node.js express and mongoDB.
+MongoDB database needed called 'bankingApp', with a collection named 'accounts'.
 
 To use the API:
 
@@ -9,7 +10,8 @@ Followed by route
 
 # API Routes:
 
-# See all accounts (grabs all active user accounts where deleted property= false):
+# See all accounts
+Gets and displays all active user accounts from the db where deleted property= false.
 
 URL: /accounts
 
@@ -29,6 +31,7 @@ API returns all accounts as JSON as an array of objects:
 
 # Add new account:
 
+Allows user to add new customer account and post this data to the db.
 URL: /accounts
 
 Method: POST
