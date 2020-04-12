@@ -12,24 +12,22 @@ const url = 'mongodb://localhost:27017';
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 
+
 //display all accounts route
 app.get('/accounts', (req, res) => {
-    MongoClient.connect(url, {useUnifiedTopology: true}, (err, client) => {
+    MongoClient.connect(url, {useUnifiedTopology: true}, async (err, client) => {
         console.log('connected to account database successfully');
         let bankDb = client.db('bankingApp');
-        displayAllAccounts(bankDb, (documentsReturned) => {
-            res.json(documentsReturned);
+        let accounts = await displayAllAccounts(bankDb);
+        res.json({"accounts" : accounts});
         });
-    });
 });
 
 //function get all accounts
-var displayAllAccounts = (db, callback) => {
+let displayAllAccounts = async (db) => {
     let collection = db.collection('accounts');
-    collection.find({deleted:false}).toArray((err, documents) => {
-        console.log('found the following accounts');
-        callback(documents);
-    })
+    let result = await collection.find({deleted:false}).toArray();
+    return result;
 };
 
 
