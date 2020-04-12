@@ -35,6 +35,19 @@ Method: POST
 
 API returns:
 
-Success message: 'Successfully added new account for: (client Name)'
+Succes: status 200
+```
+{
+    "success": true,
+    "message": "Successfully added new account for: (client Name)"
+}
+```
 
-Error message: 'Unable to add new account for this client.'
+Failure: status 500
+```
+{
+    "success": false,
+    "message": "nable to add new account for this client."
+}
+```
+
