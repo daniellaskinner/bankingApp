@@ -8,9 +8,9 @@ In browser: http://localhost:1000
 
 Followed by route
 
-# API Routes:
+## API Routes:
 
-# See all accounts
+### See all accounts
 Gets and displays all active user accounts from the db where deleted property= false.
 
 URL: /accounts
@@ -29,7 +29,7 @@ API returns all accounts as JSON as an array of objects:
 ```
 
 
-# Add new account:
+### Add new account
 
 Allows user to add new customer account and post this data to the db.
 URL: /accounts
@@ -38,7 +38,7 @@ Method: POST
 
 API returns:
 
-Succes: status 200
+Success: status 200
 ```
 {
     "success": true,
@@ -50,7 +50,32 @@ Failure: status 500
 ```
 {
     "success": false,
-    "message": "nable to add new account for this client."
+    "message": "Unable to add new account for this client."
 }
 ```
 
+
+### Update account balance
+
+Allows user to make a deposit and update their account balance in the db.
+URL: /accounts
+
+Method: PUT
+
+API returns:
+
+Success: status 200
+```
+{
+    "success": true,
+    "message": "Successfully updated account balance."
+}
+```
+
+Failure: status 500
+```
+{
+    "success": false,
+    "message": "Unable to process this deposit, please contact and administrator."
+}
+```
