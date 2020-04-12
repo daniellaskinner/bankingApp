@@ -38,6 +38,7 @@ let displayAllAccounts = async (db) => {
             accountNumber: req.body.accountNumber,
             accountBalance: req.body.accountBalance,
         };
+
         let status = 500;
         let response = {
             "success": false,
@@ -72,37 +73,45 @@ let displayAllAccounts = async (db) => {
     };
 
 
-// JSON TO TEST BELOW
-// {"id":"5e8eed83270adc042416361b", "deposit": "135"}
+//edit account route (for updating balance/adding funds)
+    app.put('/accounts', jsonParser, (req, res) => {
+        const dataToSend = {
+            id: ObjectId(req.body.id),
+            depositToAdd: req.body.deposit
+        };
 
+        let status = 500;
+        let response = {
+            "success": false,
+            "message": "Unable to process this deposit, please contact and administrator."
+        };
 
+        MongoClient.connect(url, {useNewUrlParser: true, useUnifiedTopology: true}, async (err, client) => {
+            let bankDb = client.db('bankingApp');
+            let updatedBalance = await updateAccountBalance(bankDb, dataToSend);
 
-// //edit account route (for updating balance/adding funds)
-//     app.put('/accounts', jsonParser, (req, res) => {
-//         const dataToSend = {
-//             id: ObjectId(req.body.id),
-//             depositToAdd: req.body.deposit
-//         };
-//         MongoClient.connect(url, {useNewUrlParser: true, useUnifiedTopology: true}, async (err, client) => {
-//             let bankDb = client.db('bankingApp');
-//
-//             let documents = await updateAccountBalance(bankDb, dataToSend)
-//                 if (documents.modifiedCount === 1) {
-//                     res.send('Successfully updated account balance');
-//                 } else {
-//                     res.send('Unable to process your deposit.');
-//                 }
-//                 client.close();
-//             });
-//     });
-//
-// // function update account balance
-// let updateAccountBalance = async(db, deposit) => {
-//     let collection = db.collection('accounts');
-//     //increment the account balance by the deposit
-//     let result = await collection.updateOne({_id : deposit.id}, {$inc: {accountBalance: deposit.depositToAdd}});
-//        return result;
-// };
+            if (updatedBalance.modifiedCount === 1) {
+                response.success = true;
+                status = 200;
+                response.message = 'Successfully updated account balance';
+                res.status(status).send(response);
+            } else {
+                response.success = false;
+                status = 500;
+                response.message = 'Unable to process this deposit, please contact and administrator.';
+                res.status(status).send(response);
+            }
+            await client.close();
+        });
+    });
+
+// function update account balance
+let updateAccountBalance = async(db, deposit) => {
+    let collection = db.collection('accounts');
+    //increment the account balance by the deposit
+    let result = await collection.updateOne({_id : deposit.id}, {$inc: {accountBalance: deposit.depositToAdd}});
+       return result;
+};
 
 
 //listener
