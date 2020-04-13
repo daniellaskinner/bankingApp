@@ -17,10 +17,37 @@ URL: /accounts
 
 Method: GET
 
-API returns all accounts as JSON as an array of objects:
+API returns a response object as JSON with accounts stored in accountsData property as aan array of objects:
 
 ```
-{"accounts":
+{
+"status":404,
+"success":true,
+"message":"Accounts successfully retrieved",
+"accountsData":
+[
+{
+"_id":"string",
+"firstName":"string",
+"surName":"string",
+"accountNumber":"string",
+"accountBalance":"number",
+"deleted":"boolean"
+},
+
+{
+"_id":"string",
+"firstName":"string",
+"surName":"string",
+"accountNumber":"string",
+"accountBalance":"number",
+"deleted":"boolean"
+}
+]
+}
+
+
+{"accountsData":
 [
   {key:value},
   {key:value},
@@ -42,16 +69,20 @@ API returns:
 Success: status 200
 ```
 {
+    "status": 200,
     "success": true,
-    "message": "Successfully added new account for: (client Name)"
+    "message": "Successfully added new account for: (client name)",
+    "accountsData": []
 }
 ```
 
 Failure: status 500
 ```
 {
+    "status": 500,
     "success": false,
-    "message": "Unable to add new account for this client."
+    "message": "Unable to add new account for this client.",
+    "accountsData": []
 }
 ```
 
@@ -69,6 +100,7 @@ API returns:
 Success: status 200
 ```
 {
+    "status": 200,
     "success": true,
     "message": "Successfully updated account balance."
 }
@@ -77,6 +109,7 @@ Success: status 200
 Failure: status 500
 ```
 {
+    "status": 500,
     "success": false,
     "message": "Unable to process this deposit, please contact and administrator."
 }
