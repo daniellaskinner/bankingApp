@@ -17,8 +17,9 @@ URL: /accounts
 
 Method: GET
 
-API returns a response object as JSON with accounts stored in accountsData property as aan array of objects:
+API returns a response object as JSON with accounts stored in accountsData property as an array of objects:
 
+Success: status 200
 ```
 {
 "status":404,
@@ -44,6 +45,16 @@ API returns a response object as JSON with accounts stored in accountsData prope
     "deleted":"boolean"
     }
   ]
+}
+```
+
+Failure: status 404
+```
+{
+  "status": 404,
+  "success": false
+  "message": "Could not retrieve accounts, please contact an administrator.",
+  "accountsData": []
 }
 ```
 
@@ -104,5 +115,34 @@ Failure: status 500
   "status": 500,
   "success": false,
   "message": "Unable to process this deposit, please contact and administrator."
+}
+```
+
+
+### Deactivate account
+
+Allows user to deactivate a customer account (soft delete) will update their deleted flag in db to true.
+
+URL: /accounts
+
+Method: PUT
+
+API returns:
+
+Success: status 200
+```
+{
+  "status": 200,
+  "success": true,
+  "message": "Account successfully deactivated. Please contact an administrator should you wish to reactivate this account."
+}
+```
+
+Failure: status 500
+```
+{
+  "status": 500,
+  "success": false,
+  "message": "Unable to deactivate this account, please contact and administrator."
 }
 ```
