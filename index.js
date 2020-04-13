@@ -17,7 +17,7 @@ const responseObject = {
     status : 0,
     success: false,
     message: '',
-    data: []
+    accountsData: []
 };
 
 //display all active accounts route
@@ -30,12 +30,12 @@ app.get('/accounts', (req, res) => {
         if (accounts.length > 0) {
             response.success = true;
             response.message = 'Accounts successfully retrieved';
-            response.data = accounts;
+            response.accountsData = accounts;
             status=200;
         } else {
             response.success = false;
-            response.message = 'Could not retrieve accounts';
-            response.data = [];
+            response.message = 'Could not retrieve accounts, please contact an administrator.';
+            response.accountsData = [];
            response.status=404;
         }
         res.status(response.status).send(response);
