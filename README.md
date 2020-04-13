@@ -25,34 +25,26 @@ API returns a response object as JSON with accounts stored in accountsData prope
 "success":true,
 "message":"Accounts successfully retrieved",
 "accountsData":
-[
-{
-"_id":"string",
-"firstName":"string",
-"surName":"string",
-"accountNumber":"string",
-"accountBalance":"number",
-"deleted":"boolean"
-},
+  [
+    {
+    "_id":"string",
+    "firstName":"string",
+    "surName":"string",
+    "accountNumber":"string",
+    "accountBalance":"number",
+    "deleted":"boolean"
+    },
 
-{
-"_id":"string",
-"firstName":"string",
-"surName":"string",
-"accountNumber":"string",
-"accountBalance":"number",
-"deleted":"boolean"
+    {
+    "_id":"string",
+    "firstName":"string",
+    "surName":"string",
+    "accountNumber":"string",
+    "accountBalance":"number",
+    "deleted":"boolean"
+    }
+  ]
 }
-]
-}
-
-
-{"accountsData":
-[
-  {key:value},
-  {key:value},
-  {key:value}
-]}
 ```
 
 
