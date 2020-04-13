@@ -1,6 +1,6 @@
 # bankingApp
 A banking app made with node.js express and mongoDB.
-MongoDB database needed called 'bankingApp', with a collection named 'accounts'.
+MongoDB database needed called 'bankingApp', with a collection named 'accounts' connect with localhost:27017
 
 To use the API:
 
@@ -32,6 +32,7 @@ API returns all accounts as JSON as an array of objects:
 ### Add new account
 
 Allows user to add new customer account and post this data to the db.
+
 URL: /accounts
 
 Method: POST
@@ -58,6 +59,7 @@ Failure: status 500
 ### Update account balance
 
 Allows user to make a deposit and update their account balance in the db.
+
 URL: /accounts
 
 Method: PUT
