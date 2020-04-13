@@ -61,20 +61,20 @@ API returns:
 Success: status 200
 ```
 {
-    "status": 200,
-    "success": true,
-    "message": "Successfully added new account for: (client name)",
-    "accountsData": []
+  "status": 200,
+  "success": true,
+  "message": "Successfully added new account for: (client name)",
+  "accountsData": []
 }
 ```
 
 Failure: status 500
 ```
 {
-    "status": 500,
-    "success": false,
-    "message": "Unable to add new account for this client.",
-    "accountsData": []
+  "status": 500,
+  "success": false
+  "message": "Unable to add new account for this client.",
+  "accountsData": []
 }
 ```
 
@@ -92,17 +92,17 @@ API returns:
 Success: status 200
 ```
 {
-    "status": 200,
-    "success": true,
-    "message": "Successfully updated account balance."
+  "status": 200,
+  "success": true,
+  "message": "Successfully updated account balance."
 }
 ```
 
 Failure: status 500
 ```
 {
-    "status": 500,
-    "success": false,
-    "message": "Unable to process this deposit, please contact and administrator."
+  "status": 500,
+  "success": false,
+  "message": "Unable to process this deposit, please contact and administrator."
 }
 ```
