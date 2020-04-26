@@ -20,6 +20,52 @@ const responseObject = {
     accountsData: []
 };
 
+//function to send response message
+function sendResponse (response, results, resource=""){
+    let response_body = responseObject;
+
+    if (results.length > 0) {
+        response_body.success = true;
+        response_body.message = `Successfully retrieved ${resource}`;
+        response_body.accountsData = results;
+        status=200;
+    } else {
+        response_body.success = false;
+        response_body.message = `Could not retrieve ${resource}, please contact an administrator.`;
+        response_body.accountsData = [];
+        response_body.status=404;
+    }
+    response.status(response_body.status).send(response_body);
+}
+
+function doDBFind(collection, findParams) {
+    let query = async (db) => {
+        let collection = db.collection(collection);
+        return await collection.find(findParams).toArray();
+    };
+    return connectToDb(query);
+}
+
+//function to make a DB query
+function connectToDb(queryCallback, dbName='bankingApp'){
+    MongoClient.connect(url, {useUnifiedTopology: true}, async (err, client) => {
+        let db = client.db(dbName);
+        let results = await queryCallback(db);
+        return results;
+    });
+}
+
+//function to grab _id from db when provided the account number
+function getIdFromAccountNum(accountNum) {
+   let accounts = doDBFind('accounts', {accountNumber:accountNum});
+    if (accounts.length === 1) {
+        return accounts[0]._id;
+    } else {
+       return null;
+       //TODO(Nelly): should only ever be one account but there could be a duplicate or no account, deal with errors?
+    }
+}
+
 //display all active accounts route
 app.get('/accounts', (req, res) => {
     MongoClient.connect(url, {useUnifiedTopology: true}, async (err, client) => {
@@ -36,7 +82,7 @@ app.get('/accounts', (req, res) => {
             response.success = false;
             response.message = 'Could not retrieve accounts, please contact an administrator.';
             response.accountsData = [];
-           response.status=404;
+            response.status=404;
         }
         res.status(response.status).send(response);
     });
@@ -50,7 +96,7 @@ let displayAllAccounts = async (db) => {
 };
 
 
-//add account route
+//add account route (can change to singular account)
     app.post('/accounts', jsonParser, (req, res) => {
         const newAccount = {
             firstName: req.body.firstName,
@@ -89,11 +135,15 @@ let displayAllAccounts = async (db) => {
 
 
 //edit account route (for updating balance/adding funds)
-    app.put('/accounts', jsonParser, (req, res) => {
+    app.put('/accounts/{accountNumber}/deposit', jsonParser, (req, res) => {
+
         const dataToSend = {
-            id: ObjectId(req.body.id),
+            id: ObjectId(getIdFromAccountNum(req.param.accountNumber)),
             depositToAdd: req.body.deposit
         };
+
+        console.log(req.param.accountNumber);
+        console.log(req.body.deposit);
 
         MongoClient.connect(url, {useNewUrlParser: true, useUnifiedTopology: true}, async (err, client) => {
             let bankDb = client.db('bankingApp');

@@ -1,0 +1,12 @@
+nav {
+    min-height: 40px;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    font-weight: 600;
+    z-index: 999;
+}
+
+li {
+    float: left;
+}
