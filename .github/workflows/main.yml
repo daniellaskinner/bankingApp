@@ -33,5 +33,9 @@ jobs:
             pr_title: ${{github.event.pull_request.title}}
             pr_number: ${{github.event.pull_request.number}}
             pr_url: ${{github.event.pull_request.url}}
-          run: |
-           main: 'githubAction.js'
+          run: echo 'Hello world"
+#           main: 'githubAction.js'
+            # Insert the call to the JIRA issue creator thingy
+#            title="Dependabot PR $pr_title opened"
+#            body="Dependabot has opened PR #$pr_number
+#                   Link: $pr_url"
