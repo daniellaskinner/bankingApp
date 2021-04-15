@@ -146,3 +146,5 @@ Failure: status 500
   "message": "Unable to deactivate this account, please contact and administrator."
 }
 ```
+### Github actions
+Every time a PR is made, this will trigger the github action in workflows directory.
