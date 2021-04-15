@@ -36,9 +36,9 @@ jobs:
             project: GAJL
             issuetype: Task
             summary: |
-              Build completed for ${{ github.event.pull_request.name }}
+              Build completed for ${{ github.event.pull_request.title }}
 #              this will be dependabot stuff e.g. github.event.pull_request.name ?
-            description: Created automatically via GitHub Actions
+            description: ${{ github.event.pull_request.body }}
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
