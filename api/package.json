@@ -18,9 +18,12 @@
   "homepage": "https://github.com/daniellaskinner/bankingApp#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "elliptic": "^6.5.2",
     "express": "^4.17.1",
     "jest": "^25.3.0",
+    "lodash": "^4.17.15",
     "mongodb": "^3.5.5",
-    "nodemon": "^2.0.3"
+    "nodemon": "^2.0.3",
+    "y18n": "^4.0.0"
   }
 }
