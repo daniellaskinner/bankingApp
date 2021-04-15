@@ -32,7 +32,7 @@ jobs:
           if: ${{github.event.pull_request.user.login  == 'dependabot[bot]' || github.event.pull_request.user.login  == 'app/dependabot' || github.event.pull_request.user.login  == 'app/dependabot-preview' || github.event.pull_request.user.login == 'daniellaskinner'}}
           uses: atlassian/gajira-todo@master
           with:
-            project: Github-actions-JIRA-link
+            project: GAJL
             issuetype: Task
             description: Created automatically via GitHub Actions
           env:
