@@ -20,7 +20,21 @@ jobs:
           run: echo "This is a dependabot PR"
 #            instead of echo, open a JIRA issue
 
+        - name: Login to JIRA
+          uses: atlassian/gajira-login@master
+           env:
+              JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+              JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
+              JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
 
+        - name: Jira Issue creation
+          uses: atlassian/gajira-todo@master
+          with:
+            project: Github-actions-JIRA-link
+            issuetype: Task
+            description: Created automatically via GitHub Actions
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
 #        - uses: actions/checkout@v2
