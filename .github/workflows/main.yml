@@ -16,11 +16,12 @@ jobs:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
       steps:
         - name: Checks if Dependabot PR
-          if: ${{github.event.pull_request.user.login  == 'dependabot[bot]' || github.event.pull_request.user.login  == 'app/dependabot' || github.event.pull_request.user.login  == 'app/dependabot-preview'}}
+          if: ${{github.event.pull_request.user.login  == 'dependabot[bot]' || github.event.pull_request.user.login  == 'app/dependabot' || github.event.pull_request.user.login  == 'app/dependabot-preview' || github.event.pull_request.user.login == 'daniellaskinner'}}
           run: echo "This is a dependabot PR"
 #            instead of echo, open a JIRA issue
 
         - name: Login to JIRA
+          if: ${{github.event.pull_request.user.login  == 'dependabot[bot]' || github.event.pull_request.user.login  == 'app/dependabot' || github.event.pull_request.user.login  == 'app/dependabot-preview' || github.event.pull_request.user.login == 'daniellaskinner'}}
           uses: atlassian/gajira-login@master
           env:
               JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
@@ -28,6 +29,7 @@ jobs:
               JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
 
         - name: Jira Issue creation
+          if: ${{github.event.pull_request.user.login  == 'dependabot[bot]' || github.event.pull_request.user.login  == 'app/dependabot' || github.event.pull_request.user.login  == 'app/dependabot-preview' || github.event.pull_request.user.login == 'daniellaskinner'}}
           uses: atlassian/gajira-todo@master
           with:
             project: Github-actions-JIRA-link
