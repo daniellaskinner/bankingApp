@@ -29,14 +29,20 @@ jobs:
               JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
 
         - name: Jira Issue creation
+          id: create
           if: ${{github.event.pull_request.user.login  == 'dependabot[bot]' || github.event.pull_request.user.login  == 'app/dependabot' || github.event.pull_request.user.login  == 'app/dependabot-preview' || github.event.pull_request.user.login == 'daniellaskinner'}}
-          uses: atlassian/gajira-todo@master
+          uses: atlassian/gajira-create@master
           with:
             project: GAJL
             issuetype: Task
+            summary: |
+              Build completed for ${{ github.repository }}
             description: Created automatically via GitHub Actions
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+        - name: Log created JIRA issue
+          run: echo "Issue ${{ steps.create.outputs.issue }} was created"
 
 
 #        - uses: actions/checkout@v2
