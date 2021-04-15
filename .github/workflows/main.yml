@@ -17,7 +17,7 @@ jobs:
       steps:
         - name: Checks if Dependabot PR
 #          if: ${{github.event_name != 'pull_request'}}
-          run: echo "work please"
+          run: echo "hey Char"
 
 #        - uses: actions/checkout@v2
 #          if: ${{github.event.pull_request.user.login  == 'dependabot[bot]' || github.event.pull_request.user.login  == 'app/dependabot' || github.event.pull_request.user.login  == 'app/dependabot-preview'}}
