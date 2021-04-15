@@ -44,20 +44,3 @@ jobs:
 
         - name: Log created JIRA issue
           run: echo "Issue ${{ steps.create.outputs.issue }} was created"
-
-
-#        - uses: actions/checkout@v2
-#          if: ${{github.event.pull_request.user.login  == 'dependabot[bot]' || github.event.pull_request.user.login  == 'app/dependabot' || github.event.pull_request.user.login  == 'app/dependabot-preview'}}
-#
-#        - name: Open JIRA issue if Dependabot PR
-#          if: ${{github.event.pull_request.user.login  == 'dependabot[bot]' || github.event.pull_request.user.login  == 'app/dependabot' || github.event.pull_request.user.login  == 'app/dependabot-preview'}}
-#          env:
-#            pr_title: ${{github.event.pull_request.title}}
-#            pr_number: ${{github.event.pull_request.number}}
-#            pr_url: ${{github.event.pull_request.url}}
-#          run: echo "Hello world"
-#           main: 'githubAction.js'
-            # Insert the call to the JIRA issue creator thingy
-#            title="Dependabot PR $pr_title opened"
-#            body="Dependabot has opened PR #$pr_number
-#                   Link: $pr_url"
