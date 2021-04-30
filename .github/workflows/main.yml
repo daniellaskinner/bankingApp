@@ -20,7 +20,6 @@ jobs:
           run: exit 1
 
         - name: Login to JIRA
-          if: ${{github.event.pull_request.user.login  == 'dependabot[bot]' || github.event.pull_request.user.login  == 'app/dependabot' || github.event.pull_request.user.login  == 'app/dependabot-preview' || github.event.pull_request.user.login == 'daniellaskinner'}}
           uses: atlassian/gajira-login@master
           env:
               JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
@@ -29,7 +28,6 @@ jobs:
 
         - name: Jira Issue creation
           id: create
-          if: ${{github.event.pull_request.user.login  == 'dependabot[bot]' || github.event.pull_request.user.login  == 'app/dependabot' || github.event.pull_request.user.login  == 'app/dependabot-preview' || github.event.pull_request.user.login == 'daniellaskinner'}}
           uses: atlassian/gajira-create@master
           with:
             project: GAJL
