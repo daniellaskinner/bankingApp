@@ -17,11 +17,7 @@ jobs:
       steps:
         - name: Check if pull request is dependabot
               if: ${{ github.event.pull_request.user.login !== 'daniellaskinner' }}
-              run: exit 1
-#        - name: Checks if Dependabot PR
-#          if: ${{github.event.pull_request.user.login  == 'dependabot[bot]' || github.event.pull_request.user.login  == 'app/dependabot' || github.event.pull_request.user.login  == 'app/dependabot-preview' || github.event.pull_request.user.login == 'daniellaskinner'}}
-#          run: echo "This is a dependabot PR"
-##            instead of echo, open a JIRA issue
+              run: exit 0
 
         - name: Login to JIRA
           if: ${{github.event.pull_request.user.login  == 'dependabot[bot]' || github.event.pull_request.user.login  == 'app/dependabot' || github.event.pull_request.user.login  == 'app/dependabot-preview' || github.event.pull_request.user.login == 'daniellaskinner'}}
