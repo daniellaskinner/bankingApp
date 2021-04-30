@@ -16,7 +16,7 @@ jobs:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
       steps:
         - name: Check if pull request is dependabot
-          if: ${{ github.event.pull_request.user.login !== 'daniellaskinner' }}
+          if: ${{ github.event.pull_request.user.login != 'daniellaskinner' }}
           run: exit 1
 
         - name: Login to JIRA
