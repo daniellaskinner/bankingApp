@@ -1,13 +1,7 @@
-# This is a basic workflow to help you get started with Actions
-
 name: Dependabot JIRA issue for dependabot PRs
 on:
   pull_request:
     branches: [ master ]
-    #specify on dependabot PR
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
 
 jobs:
   jira_issue:
@@ -16,7 +10,7 @@ jobs:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
       steps:
         - name: Check if pull request is dependabot
-          if: ${{ github.event.pull_request.user.login == 'daniellaskinner' }}
+          if: ${{ github.event.pull_request.user.login != 'daniellaskinner' }}
           run: exit 1
 
         - name: Login to JIRA
